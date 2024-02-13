@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+
+  padding: 15px 0 9px;
+
+  border-bottom: 1px solid rgba(#ffffff, 0.5);
+}
+
+.menu {
+  display: flex;
+  gap: 36px;
+
+  margin-left: auto;
+  padding-top: 12px;
+}
+
+.cart {
+  display: flex;
+  align-items: baseline;
+  gap: 40px;
+
+  margin-top: 12px;
+  margin-left: 36px;
+}

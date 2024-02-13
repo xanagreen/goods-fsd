@@ -1,0 +1,19 @@
+.preview {
+  position: relative;
+}
+
+.count {
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 600;
+
+  position: absolute;
+  top: 9px;
+  left: 12px;
+
+  padding: 1px 4px 1px 5px;
+
+  color: white;
+  border-radius: 50%;
+  background-color: #f14f4f;
+}

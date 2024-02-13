@@ -1,0 +1,53 @@
+.checkbox {
+  position: relative;
+
+  cursor: pointer;
+}
+
+.container {
+  display: block;
+  overflow: hidden;
+
+  height: 120px;
+  margin-bottom: 14px;
+
+  object-fit: cover;
+
+  border-radius: 4px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+
+  position: relative;
+
+  padding-left: 34px;
+
+  &::before {
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+
+    display: block;
+
+    height: 24px;
+    width: 24px;
+
+    content: "";
+
+    border: 1px solid #dbbba9;
+    border-radius: 4px;
+  }
+}
+
+.input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.input:checked + .label {
+  &::before {
+    background-color: #dbbba9;
+  }
+}

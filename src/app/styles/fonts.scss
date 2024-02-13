@@ -1,0 +1,25 @@
+@font-face {
+  font-display: swap;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/shared/ui/fonts/Jost-Regular.woff2") format("woff2"),
+    url("/shared/ui/fonts/Jost-Regular.ttf") format("ttf");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/shared/ui/fonts/Jost-SemiBold.woff2") format("woff2"),
+    url("/shared/ui/fonts/Jost-SemiBold.ttf") format("ttf");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/shared/ui/fonts/Jost-Bold.woff2") format("woff2"), url("/shared/ui/fonts/Jost-Bold.ttf") format("ttf");
+}

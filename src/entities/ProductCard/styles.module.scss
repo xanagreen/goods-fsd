@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  overflow: hidden;
+  object-fit: cover;
+
+  height: 293px;
+  margin-bottom: 10px;
+
+  color: #444b58;
+  border-radius: 4px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+
+  margin-bottom: 3px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 400;
+}
