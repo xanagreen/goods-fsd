@@ -53,7 +53,13 @@ const MainPage = () => {
       img: Team5
     },
   ].map((member, index) =>
-    <TeamCard name={member.name} position={member.position} img={member.img} shift={(index + 1) % 3 === 2 } />
+    <TeamCard 
+      key={`${index}${member.name}`} 
+      name={member.name} 
+      position={member.position} 
+      img={member.img} 
+      shift={(index + 1) % 3 === 2 } 
+    />
   );
 
   const faqList = [
@@ -65,7 +71,7 @@ const MainPage = () => {
       question: 'Question 2',
       answer: 'Long answer to the first question',
     }
-  ].map(item => <FaqItem question={item.question} answer={item.answer} />)
+  ].map((item, index) => <FaqItem key={index} question={item.question} answer={item.answer} />)
 
   return (
     <div>

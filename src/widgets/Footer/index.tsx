@@ -31,7 +31,7 @@ const Footer = () => {
   ]
 
   const listItems = linksData.map(link =>
-    <li><MenuLink label={link.label} url={link.url} /></li>
+    <li><MenuLink key={link.label} label={link.label} url={link.url} /></li>
   );
 
   return (

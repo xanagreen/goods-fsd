@@ -36,8 +36,8 @@ const FilterProducts = () => {
       label: 'sneakers',
       value: 'sneakers',
     }
-  ].map((item) => (
-    <label className={styles['filter__checkbox']}>
+  ].map((item,) => (
+    <label className={styles['filter__checkbox']} key={item.value}>
       <input type="checkbox" name={item.value} className={styles['filter__input']} />
       <span className={styles['filter__checkbox-label']}>{item.label}</span>
     </label>
