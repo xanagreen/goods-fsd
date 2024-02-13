@@ -24,7 +24,7 @@
 
     &-subtitle {
       font-size: 16px;
-      line-height: 140%;
+      line-height: 22px;
       font-weight: 600;
 
       margin-bottom: 40px;
@@ -118,6 +118,7 @@
 
   &__author {
     font-size: 20px;
+    line-height: 29px;
     font-weight: 700;
 
     position: relative;
@@ -126,7 +127,7 @@
 
     &::before {
       position: absolute;
-      top: 10px;
+      top: 8px;
       right: 129px;
 
       display: block;
@@ -156,17 +157,20 @@
 
   &__caption {
     font-size: 16px;
+    font-weight: 600;
 
     display: block;
 
     margin-bottom: 20px;
-    padding: 3px;
+    padding-bottom: 3px;
 
+    color: #808080;
     border-bottom: 1px solid #808080;
   }
 
   &__subtitle {
     font-size: 24px;
+    font-weight: 600;
 
     margin-bottom: 9px;
   }
@@ -174,9 +178,9 @@
   &__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px 70px;
+    gap: 17px 70px;
 
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
 
   &__footer {

@@ -57,6 +57,8 @@
 }
 
 .rotate {
+  padding-bottom: 15px;
+
   &::after,
   &::before {
     transform: rotate(45deg);
