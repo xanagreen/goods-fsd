@@ -38,7 +38,7 @@ const ProductDetails = ({product}: ProductDetailsProps) => {
         <p className={`${styles.row} ${styles['row--align-center']}`}>
           <span className={styles.label}>Rating</span>
           <span className={styles.stars}>
-            {Array(Math.round(rating || 0)).fill(null).map((_, i) => <RatingStarIcon />)}
+            {Array(Math.round(rating || 0)).fill(null).map((_, i) => <RatingStarIcon key={i} />)}
           </span>
         </p>
 

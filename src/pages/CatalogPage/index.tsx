@@ -2,20 +2,23 @@ import Header from "widgets/Header";
 import styles from "./styles.module.scss";
 import ProductList from "widgets/ProductList";
 import SearchProducts from "features/SearchProducts";
-import { useAppDispatch, useAppSelector } from "app/store/hooks";
-import { fetchAllProducts, fetchProductsBySearch } from "widgets/ProductList/slice";
+import { useAppDispatch } from "app/store/hooks";
+import { fetchAllProducts } from "widgets/ProductList/slice";
+import { useEffect } from "react";
 
 const CatalogPage = () => {
   const dispatch = useAppDispatch();
-  const { search } = useAppSelector((state) => state.search);
+
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      dispatch(fetchAllProducts());
+    }, 700)
+
+    return () => clearTimeout(getData)
+  }, [dispatch]);
   
   const showMoreProducts = () => {
-    console.log(search)
-    if(search) {
-      dispatch(fetchProductsBySearch(search));
-    } else {
-      dispatch(fetchAllProducts());
-    }
+    dispatch(fetchAllProducts());
   }
 
   return (

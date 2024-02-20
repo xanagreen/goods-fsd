@@ -4,7 +4,9 @@
 
   padding: 15px 0 9px;
 
-  border-bottom: 1px solid rgba(#ffffff, 0.5);
+  &:not(&--simple) {
+    border-bottom: 1px solid rgba(#ffffff, 0.5);
+  }
 }
 
 .menu {

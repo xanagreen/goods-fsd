@@ -3,25 +3,26 @@ import TextInput from "shared/ui/TextInput";
 import styles from "./styles.module.scss";
 import { fetchProductsBySearch, fetchAllProducts } from 'widgets/ProductList/slice';
 import { FormEvent, useCallback, useEffect, useState } from "react";
-import { useAppDispatch } from "app/store/hooks";
+import { useAppDispatch, useAppSelector } from "app/store/hooks";
 import useDebounce from "app/hooks/useDebounce";
 import { setSearchValue } from "./slice";
 
 const SearchProducts = () => {
   const [value, setValue] = useState('');
-  const debouncedValue = useDebounce(value, 700);
+  const { search } = useAppSelector((state) => state.search);
+  const debouncedValue = useDebounce(value, 2000);
   const dispatch = useAppDispatch();
 
-  const search = useCallback(async () => {
-    if (debouncedValue) {
+  const fetchProducts = useCallback(async () => {
+    if (debouncedValue && debouncedValue !== search) {
       dispatch(setSearchValue(debouncedValue));
       dispatch(fetchProductsBySearch(debouncedValue));
     }
   }, [debouncedValue, dispatch]);
 
   useEffect(() => {
-    search();
-  }, [debouncedValue, search]);
+    fetchProducts();
+  }, [debouncedValue, fetchProducts]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,6 +30,12 @@ const SearchProducts = () => {
   }
 
   const handleSearch = () => {
+    if (!search && !value) {
+      return
+    }
+
+    dispatch(setSearchValue(value));
+
     if (value) {
       dispatch(fetchProductsBySearch(value));
     } else {

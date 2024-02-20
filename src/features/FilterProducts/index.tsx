@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { setCategoryOption } from './slice';
 import { Button } from "shared/ui/Button";
 import styles from "./styles.module.scss";
-import { fetchAllProducts, fetchProductsByCategory } from 'widgets/ProductList/slice';
+import { fetchAllProducts, fetchProductsByCategory, resetProducts } from 'widgets/ProductList/slice';
 
 
 const FilterProducts = () => {
@@ -35,6 +35,7 @@ const FilterProducts = () => {
 
   const resetFilter = () => {
     if (categoryOption) {
+      dispatch(resetProducts());
       dispatch(setCategoryOption(null))
       dispatch(fetchAllProducts());
     }

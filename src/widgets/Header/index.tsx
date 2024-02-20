@@ -53,7 +53,7 @@ const Header = ({type = 'main'}: HeaderProps) => {
   );
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${type === 'stuff' ? styles['header--simple'] : ''}`}>
       <Logo />
 
       <ul className={styles.menu}>

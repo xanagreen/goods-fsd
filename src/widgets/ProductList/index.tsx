@@ -22,7 +22,7 @@ const ProductList = ({showMoreProducts}: ProductListProps) => {
       </div>
 
       {
-        products.length !== total && <Button type='primary' text="Show more" onClick={showMoreProducts} />
+        products.length !== 0 && products.length !== total && <Button type='primary' text="Show more" onClick={showMoreProducts} />
       }
     </div>
   );
