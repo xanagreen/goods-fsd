@@ -1,38 +1,55 @@
 import Logo from "features/Logo";
 import MenuLink from "shared/ui/MenuLink";
 import styles from "./styles.module.scss";
-import CartPreview from "features/CartPreview";
 
-const Header = () => {
-  const linksData: {label: string, url: string}[] = [
+type HeaderProps = {
+  type?: 'main' | 'stuff';
+};
+
+type menuLink = {
+  label: string, 
+  url: string
+}
+
+const Header = ({type = 'main'}: HeaderProps) => {
+  const mainLinksData: menuLink[] = [
     {
       label: 'Catalog',
-      url: '#'
+      url: '/#catalog'
     },
     {
       label: 'About us',
-      url: '#'
+      url: '/#about'
     },
     {
       label: 'Product selection',
-      url: '#'
+      url: '/#selection'
     },
     {
       label: 'Our team',
-      url: '#'
+      url: '/#team'
     },
     {
-      label: 'Shipping and payment',
-      url: '#'
+      label: 'FAQ',
+      url: '/#faq'
     },
     {
-      label: 'Contacts',
-      url: '#'
+      label: 'For staff',
+      url: '/catalog'
     },
-  ]
+  ];
 
-  const listItems = linksData.map(link =>
-    <li><MenuLink key={link.label} label={link.label} url={link.url} /></li>
+  const stuffLinksData: menuLink[] = [
+    {
+      label: 'Back to site',
+      url: '/'
+    }
+  ];
+
+  const data = type === 'main' ? mainLinksData : stuffLinksData;
+
+  const listItems = data.map(link =>
+    <li key={link.label}><MenuLink label={link.label} url={link.url} /></li>
   );
 
   return (
@@ -42,12 +59,6 @@ const Header = () => {
       <ul className={styles.menu}>
         {listItems}
       </ul>
-
-      <div className={styles.cart}>
-        <MenuLink label="Cart" url="#" />
-
-        <CartPreview count={1} />
-      </div>
     </header>
   );
 };

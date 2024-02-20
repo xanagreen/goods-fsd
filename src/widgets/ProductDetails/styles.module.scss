@@ -1,0 +1,43 @@
+.product {
+  display: grid;
+  grid-template-columns: 520px 1fr;
+  gap: 42px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 48px;
+}
+
+.label {
+  display: inline-block;
+
+  color: #b2b5bb;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+
+  font-size: 16px;
+  line-height: 23px;
+  font-weight: 600;
+
+  color: #444b58;
+
+  & + & {
+    margin-top: 24px;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
+}
+
+.stars {
+  display: inline-flex;
+  gap: 4px;
+}

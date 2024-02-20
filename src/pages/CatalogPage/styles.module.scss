@@ -1,0 +1,20 @@
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.top {
+  position: relative;
+
+  margin-bottom: 65px;
+
+  background-color: #484283;
+}
+
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  margin-bottom: 100px;
+}

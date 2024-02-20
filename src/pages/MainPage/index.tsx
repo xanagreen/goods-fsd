@@ -5,20 +5,34 @@ import ProductList from "widgets/ProductList";
 import FilterProducts from "features/FilterProducts";
 import Footer from "widgets/Footer";
 import AboutImg from 'shared/images/about.png'
-import FormImg from 'shared/images/form-img.png'
 import Team0 from 'shared/images/team-0.png'
 import Team1 from 'shared/images/team-1.png'
 import Team2 from 'shared/images/team-2.png'
 import Team3 from 'shared/images/team-3.png'
 import Team4 from 'shared/images/team-4.png'
 import Team5 from 'shared/images/team-5.png'
-import ImageCheckbox from "shared/ui/ImageCheckbox";
+import Checkbox from "shared/ui/Checkbox";
 import TeamCard from "entities/TeamCard";
 import FaqItem from "shared/ui/FaqItem";
+import { useAppSelector, useAppDispatch } from "app/store/hooks";
+import { fetchProductsCategories } from "features/FilterProducts/slice";
+import { useEffect } from "react";
 
 const MainPage = () => {
-  const checkboxes =  Array.from({length:6}, (_, index) =>
-    <ImageCheckbox value={`${index}`} label="sneakers" img={FormImg}  />
+  const { categories } = useAppSelector((state) => state.categories);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      dispatch(fetchProductsCategories());
+    }, 700)
+
+    return () => clearTimeout(getData)
+  }, [dispatch]);
+
+
+  const checkboxes =  categories.map((item) =>
+    <Checkbox key={item} value={item} label={item} />
   );
 
   const teamMembers =  [
@@ -96,7 +110,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className={`${styles.container} ${styles['catalog']}`}>
+      <div id="catalog" className={`${styles.container} ${styles['catalog']}`}>
         <h2 className={styles['catalog__title']}>Catalog</h2>
 
         <div className={styles['catalog__content']}>
@@ -105,7 +119,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className={styles.about}>
+      <div id="about" className={styles.about}>
         <div className={`${styles.container} ${styles['about__container']}`}>
           <div className={styles['about__content']}>
             <h2 className={styles['about__title']}>About us</h2>
@@ -126,7 +140,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className={`${styles.container} ${styles.form}`}> 
+      <div id="selection" className={`${styles.container} ${styles.form}`}> 
         <h2 className={styles['form__title']}>
           We will select the perfect product for you
         </h2>
@@ -145,14 +159,14 @@ const MainPage = () => {
           </div>
 
           <div className={styles['form__footer']}>
-            <p className={styles['form__page-number']}>1 of 3</p>
+            <p className={styles['form__page-number']}>1 of 2</p>
 
             <Button type='outlined' text='Next step' />
           </div>
         </form>
       </div>
 
-      <div className={styles.team}>
+      <div id="team" className={styles.team}>
         <div className={`${styles.container} ${styles['team__container']}`}>
           <h2 className={styles['team__title']}>
             Our team
@@ -164,7 +178,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className={styles.faq}>
+      <div id="faq" className={styles.faq}>
         <h2 className={styles['faq__title']}>
           FAQ
         </h2>

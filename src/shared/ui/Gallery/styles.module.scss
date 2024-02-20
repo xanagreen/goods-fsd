@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  height: 460px;
+  margin-bottom: 10px;
+
+  color: #444b58;
+  border-radius: 4px;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.img {
+  object-fit: contain;
+
+  width: 100%;
+  height: 100%;
+}
+
+.dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 8px;
+}
+
+.thumbnail {
+  object-fit: cover;
+
+  width: 100%;
+  height: 100%;
+}

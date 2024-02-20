@@ -6,32 +6,32 @@ const Footer = () => {
   const linksData: {label: string, url: string}[] = [
     {
       label: 'Catalog',
-      url: '#'
+      url: '/#catalog'
     },
     {
       label: 'About us',
-      url: '#'
+      url: '/#about'
     },
     {
       label: 'Product selection',
-      url: '#'
+      url: '/#selection'
     },
     {
       label: 'Our team',
-      url: '#'
+      url: '/#team'
     },
     {
-      label: 'Shipping and payment',
-      url: '#'
+      label: 'FAQ',
+      url: '/#faq'
     },
     {
-      label: 'Contacts',
-      url: '#'
+      label: 'For staff',
+      url: '/catalog'
     },
-  ]
+  ];
 
   const listItems = linksData.map(link =>
-    <li><MenuLink key={link.label} label={link.label} url={link.url} /></li>
+    <li key={link.label}><MenuLink  label={link.label} url={link.url} /></li>
   );
 
   return (
