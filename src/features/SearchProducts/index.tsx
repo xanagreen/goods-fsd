@@ -5,6 +5,7 @@ import { fetchProductsBySearch, fetchAllProducts } from 'widgets/ProductList/sli
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "app/store/hooks";
 import useDebounce from "app/hooks/useDebounce";
+import { setSearchValue } from "./slice";
 
 const SearchProducts = () => {
   const [value, setValue] = useState('');
@@ -13,6 +14,7 @@ const SearchProducts = () => {
 
   const search = useCallback(async () => {
     if (debouncedValue) {
+      dispatch(setSearchValue(debouncedValue));
       dispatch(fetchProductsBySearch(debouncedValue));
     }
   }, [debouncedValue, dispatch]);

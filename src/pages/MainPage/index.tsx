@@ -17,10 +17,19 @@ import FaqItem from "shared/ui/FaqItem";
 import { useAppSelector, useAppDispatch } from "app/store/hooks";
 import { fetchProductsCategories } from "features/FilterProducts/slice";
 import { useEffect } from "react";
+import { fetchAllProducts } from "widgets/ProductList/slice";
 
 const MainPage = () => {
   const { categories } = useAppSelector((state) => state.categories);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      dispatch(fetchAllProducts());
+    }, 700)
+
+    return () => clearTimeout(getData)
+  }, [dispatch]);
 
   useEffect(() => {
     const getData = setTimeout(() => {
@@ -87,6 +96,10 @@ const MainPage = () => {
     }
   ].map((item, index) => <FaqItem key={index} question={item.question} answer={item.answer} />)
 
+  const showMoreProducts = () => {
+    dispatch(fetchAllProducts());
+  }
+
   return (
     <div>
       <div className={styles.top}>
@@ -115,7 +128,7 @@ const MainPage = () => {
 
         <div className={styles['catalog__content']}>
           <FilterProducts />
-          <ProductList />
+          <ProductList showMoreProducts={showMoreProducts} />
         </div>
       </div>
 

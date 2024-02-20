@@ -5,8 +5,9 @@ const API_LINK = "https://dummyjson.com";
 
 export const fetchAllProducts = createAsyncThunk("/products/list", async (_, thunkAPI) => {
   const state = thunkAPI.getState() as RootState;
+  const skip = state.products.fetchBy === 'all' ? state.products.skip : 0;
 
-  return await fetch(`${API_LINK}/products?limit=9&skip=${state.products.skip}`).then((res) => res.json());
+  return await fetch(`${API_LINK}/products?limit=9&skip=${skip}`).then((res) => res.json());
 });
 
 export const fetchProductsByCategory = createAsyncThunk("/products/filtered", async (category: string) => {
@@ -15,8 +16,9 @@ export const fetchProductsByCategory = createAsyncThunk("/products/filtered", as
 
 export const fetchProductsBySearch = createAsyncThunk("/products/search", async (search: string, thunkAPI) => {
   const state = thunkAPI.getState() as RootState;
+  const skip = state.products.fetchBy === 'search' ? state.products.skip : 0;
 
-  return await fetch(`${API_LINK}/products/search?q=${search}&skip=${state.products.skip}&limit=9`).then((res) => res.json());
+  return await fetch(`${API_LINK}/products/search?q=${search}&skip=${skip}&limit=9`).then((res) => res.json());
 });
 
 export type Product = {
@@ -37,12 +39,14 @@ export type ProductsState = {
   products: Product[],
   skip: number,
   total: number,
+  fetchBy: 'search' | 'all',
 };
 
 const initialState: ProductsState = {
   products: [],
   skip: 0,
   total: 0,
+  fetchBy: 'all',
 };
 
 export const productsSlice = createSlice({
@@ -51,9 +55,10 @@ export const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
-      state.products = state.skip ? [...state.products, ...action.payload.products] : [...action.payload.products];
+      state.products = state.fetchBy === 'all' ? [...state.products, ...action.payload.products] : [...action.payload.products];
       state.total = action.payload.total;
-      state.skip += 9;
+      state.skip = state.fetchBy === 'all' ? state.skip + 9 : 9;
+      state.fetchBy = 'all'
     });
     builder.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
       state.products = [...action.payload.products];
@@ -61,9 +66,10 @@ export const productsSlice = createSlice({
       state.skip = 0;
     });
     builder.addCase(fetchProductsBySearch.fulfilled, (state, action) => {
-      state.products = state.skip ? [...state.products, ...action.payload.products] : [...action.payload.products];
+      state.products = state.fetchBy === 'search' ? [...state.products, ...action.payload.products] : [...action.payload.products];
       state.total = action.payload.total;
-      state.skip = 0;
+      state.skip = state.fetchBy === 'search' ? state.skip + 9 : 9;
+      state.fetchBy = 'search'
     });
   },
 });
