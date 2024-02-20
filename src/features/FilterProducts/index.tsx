@@ -15,7 +15,14 @@ const FilterProducts = () => {
   
   const categoriesList = categories.map((item, index) => (
     <label className={styles['filter__checkbox']} key={`${index}${item}`}>
-      <input type="radio" value={item} name='category' className={styles['filter__input']} onChange={handleOptionChange} />
+      <input 
+        type="radio" 
+        value={item}
+        name='category' 
+        checked={item === categoryOption} 
+        className={styles['filter__input']} 
+        onChange={handleOptionChange} 
+      />
       <span className={styles['filter__checkbox-label']}>{item}</span>
     </label>
   ))

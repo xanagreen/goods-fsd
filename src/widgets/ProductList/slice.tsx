@@ -9,10 +9,8 @@ export const fetchAllProducts = createAsyncThunk("/products/list", async (_, thu
   return await fetch(`${API_LINK}/products?limit=9&skip=${state.products.skip}`).then((res) => res.json());
 });
 
-export const fetchProductsByCategory = createAsyncThunk("/products/filtered", async (category: string, thunkAPI) => {
-  const state = thunkAPI.getState() as RootState;
-
-  return await fetch(`${API_LINK}/products/category/${category}?limit=9&skip=${state.products.skip}`).then((res) => res.json());
+export const fetchProductsByCategory = createAsyncThunk("/products/filtered", async (category: string) => {
+  return await fetch(`${API_LINK}/products/category/${category}`).then((res) => res.json());
 });
 
 export const fetchProductsBySearch = createAsyncThunk("/products/search", async (search: string, thunkAPI) => {
@@ -58,7 +56,7 @@ export const productsSlice = createSlice({
       state.skip += 9;
     });
     builder.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
-      state.products = state.skip ? [...state.products, ...action.payload.products] : [...action.payload.products];
+      state.products = [...action.payload.products];
       state.total = action.payload.total;
       state.skip = 0;
     });
