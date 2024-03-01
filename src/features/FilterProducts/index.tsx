@@ -1,19 +1,24 @@
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
-import { setCategoryOption } from './slice';
+import { setCategoryOption, useGetProductsCategoriesQuery } from './slice';
 import { Button } from "shared/ui/Button";
 import styles from "./styles.module.scss";
 import { fetchAllProducts, fetchProductsByCategory, resetProducts } from 'widgets/ProductList/slice';
 
 
 const FilterProducts = () => {
-  const { categories, categoryOption } = useAppSelector((state) => state.categories);
+  const { categoryOption } = useAppSelector((state) => state.categories);
+  const  {
+    data: categories,
+    isError: isCategoriesError,
+    isLoading: isCategoriesLoading,
+  } = useGetProductsCategoriesQuery()
   const dispatch = useAppDispatch();
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setCategoryOption(event.target.value))
   }
   
-  const categoriesList = categories.map((item, index) => (
+  const categoriesList = categories?.map((item, index) => (
     <label className={styles['filter__checkbox']} key={`${index}${item}`}>
       <input 
         type="radio" 
@@ -50,9 +55,19 @@ const FilterProducts = () => {
           Category
         </p>
 
-        <div className={styles['filter__list']}>
-          {categoriesList}
-        </div>
+        {
+          isCategoriesError && <p>Категории временно недоступны</p>
+        }
+
+        {
+          isCategoriesLoading 
+          ? <p>Загрузка категорий...</p>
+          : (
+            <div className={styles['filter__list']}>
+              {categoriesList}
+            </div>
+          )
+        }
 
         <div className={styles['filter__actions']}>
           <Button type="secondary" text="Apply" onClick={applyFilter} />

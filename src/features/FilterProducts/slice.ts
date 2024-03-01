@@ -1,18 +1,29 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const API_LINK = "https://dummyjson.com";
 
-export const fetchProductsCategories = createAsyncThunk("/products/categories", async () => {
-  return await fetch(`${API_LINK}/products/categories`).then((res) => res.json());
+export const categoriesApi = createApi({
+  reducerPath: "categoriesApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_LINK,
+  }),
+
+  tagTypes: ["Categories"],
+
+  endpoints: (build) => ({
+    getProductsCategories: build.query<string[], void>({
+      query: () => "products/categories",
+      providesTags: ["Categories"],
+    }),
+  }),
 });
 
 export type CategoriesState = {
-  categories: string[];
   categoryOption: string | null;
 };
 
 const initialState: CategoriesState = {
-  categories: [],
   categoryOption: null,
 };
 
@@ -24,13 +35,9 @@ export const categoriesSlice = createSlice({
       state.categoryOption = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(fetchProductsCategories.fulfilled, (state, action) => {
-      state.categories = [...action.payload];
-    });
-  },
 });
 
 export const { setCategoryOption } = categoriesSlice.actions;
+export const { useGetProductsCategoriesQuery } = categoriesApi;
 
 export default categoriesSlice.reducer;

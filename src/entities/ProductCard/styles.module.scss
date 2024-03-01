@@ -4,6 +4,12 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+
+  &:hover {
+    .name {
+      color: #f14f4f;
+    }
+  }
 }
 
 .wrapper {

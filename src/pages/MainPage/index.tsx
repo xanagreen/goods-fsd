@@ -1,6 +1,7 @@
 import Header from "widgets/Header";
 import styles from "./styles.module.scss";
 import { Button } from "shared/ui/Button";
+import Selection from "widgets/Selection";
 import ProductList from "widgets/ProductList";
 import FilterProducts from "features/FilterProducts";
 import Footer from "widgets/Footer";
@@ -11,16 +12,13 @@ import Team2 from 'shared/images/team-2.png'
 import Team3 from 'shared/images/team-3.png'
 import Team4 from 'shared/images/team-4.png'
 import Team5 from 'shared/images/team-5.png'
-import Checkbox from "shared/ui/Checkbox";
 import TeamCard from "entities/TeamCard";
 import FaqItem from "shared/ui/FaqItem";
-import { useAppSelector, useAppDispatch } from "app/store/hooks";
-import { fetchProductsCategories } from "features/FilterProducts/slice";
+import { useAppDispatch } from "app/store/hooks";
 import { useEffect } from "react";
 import { fetchAllProducts } from "widgets/ProductList/slice";
 
 const MainPage = () => {
-  const { categories } = useAppSelector((state) => state.categories);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -30,19 +28,6 @@ const MainPage = () => {
 
     return () => clearTimeout(getData)
   }, [dispatch]);
-
-  useEffect(() => {
-    const getData = setTimeout(() => {
-      dispatch(fetchProductsCategories());
-    }, 700)
-
-    return () => clearTimeout(getData)
-  }, [dispatch]);
-
-
-  const checkboxes =  categories.map((item) =>
-    <Checkbox key={item} value={item} label={item} />
-  );
 
   const teamMembers =  [
     {
@@ -153,30 +138,8 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div id="selection" className={`${styles.container} ${styles.form}`}> 
-        <h2 className={styles['form__title']}>
-          We will select the perfect product for you
-        </h2>
-
-        <p className={styles['form__caption']}>
-          Answer three questions and we will send you a catalog with the most suitable products for you.
-        </p>
-
-        <form>
-          <h3 className={styles['form__subtitle']}>
-            What type of product are you considering?
-          </h3>
-
-          <div className={styles['form__list']}>
-            {checkboxes}
-          </div>
-
-          <div className={styles['form__footer']}>
-            <p className={styles['form__page-number']}>1 of 2</p>
-
-            <Button type='outlined' text='Next step' />
-          </div>
-        </form>
+      <div id="selection" className={styles.container}> 
+        <Selection />
       </div>
 
       <div id="team" className={styles.team}>

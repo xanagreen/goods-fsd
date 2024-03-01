@@ -1,21 +1,16 @@
 import Header from "widgets/Header";
 import styles from "./styles.module.scss";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { fetchProduct } from "./slice";
-import { useAppDispatch, useAppSelector } from 'app/store/hooks';
+import { useGetProductQuery } from "./api";
 import ProductDetails from "widgets/ProductDetails";
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const { product } = useAppSelector((state) => state.product);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (productId) {
-      dispatch(fetchProduct(productId));
-    }
-  }, [dispatch, productId]);
+  const  {
+    data: product,
+    isError: isProductError,
+    isLoading: isProductLoading,
+  } = useGetProductQuery(Number(productId))
 
   return (
     <div>
@@ -30,7 +25,11 @@ const ProductPage = () => {
           Product {productId}
         </h1>
 
-        {product ? <ProductDetails product={product}/> : <p>Loading...</p>}
+        {isProductError && <p>Не удалось загрузить продукт...</p>}
+
+        {isProductLoading && <p>Loading...</p>}
+
+        {!isProductLoading && !isProductError && product && <ProductDetails product={product}/>}
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ type ProductListProps = {
 const ProductList = ({showMoreProducts}: ProductListProps) => {
   const { products, total } = useAppSelector((state) => state.products);
 
-  
   const listItems = products.map((item) =>
     <ProductCard key={item.id} price={item.price} name={item.title} img={item.thumbnail} id={item.id} />
   );

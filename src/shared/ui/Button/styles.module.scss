@@ -7,6 +7,10 @@
   border: none;
   border-radius: 4px;
 
+  &:hover {
+    filter: brightness(120%);
+  }
+
   &.primary {
     padding: 22px 47px;
 

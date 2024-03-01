@@ -16,6 +16,11 @@
   display: inline-block;
 
   color: #b2b5bb;
+
+  &.fixed {
+    flex-shrink: 0;
+    width: 233px;
+  }
 }
 
 .row {
@@ -40,4 +45,12 @@
 .stars {
   display: inline-flex;
   gap: 4px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  margin-top: 48px;
 }
