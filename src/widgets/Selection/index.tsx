@@ -5,6 +5,7 @@ import { useGetProductsCategoriesQuery } from "features/FilterProducts/slice";
 import { useState } from "react";
 import { useGetSelectionProductsQuery } from "./api";
 import ProductCard from "entities/ProductCard";
+import Loader from "shared/ui/Loader";
 
 const Selection = () => {
   const [step, setStep] = useState(1);
@@ -46,7 +47,7 @@ const Selection = () => {
   }
 
   return (
-      <div id="selection" className={`${styles.container} ${styles.form}`}> 
+      <div className={styles.form}> 
         <h2 className={styles['form__title']}>
           {step === 1? 'We will select the perfect product for you' : 'Your selection is ready!'}
         </h2>
@@ -61,13 +62,9 @@ const Selection = () => {
               What type of product are you considering?
             </h3>
 
-            {
-              isCategoriesError && <p>Категории временно недоступны</p>
-            }
+            {isCategoriesError && <p>Категории временно недоступны</p>}
 
-            {
-              isCategoriesLoading  &&  <p>Загрузка категорий...</p>
-            }
+            {isCategoriesLoading  &&  <Loader />}
 
             {
               !isCategoriesError && !isCategoriesLoading && categories && (

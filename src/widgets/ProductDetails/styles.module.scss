@@ -31,7 +31,7 @@
   line-height: 23px;
   font-weight: 600;
 
-  color: #444b58;
+  color: var(--c-base);
 
   & + & {
     margin-top: 24px;

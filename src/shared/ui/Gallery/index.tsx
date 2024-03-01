@@ -25,15 +25,23 @@ const Gallery = ({ images }: GalleryProps) => {
 
   const list = images.map(url => (
     <div key={url}  className={styles.wrapper} >
-      <img src={url} alt=''  className={styles.img} />
+      <img src={url} alt='' className={styles.img} />
     </div>
   ))
 
   return (
     <div className="slider-container">
-      <Slider {...settings}>
-        {list}
-      </Slider>
+      { images.length === 1
+        ? (
+          <div className={styles.wrapper} >
+            <img src={images[0]} alt='' className={styles.img} />
+          </div>
+        ) : (
+          <Slider {...settings}>
+            {list}
+          </Slider>
+        )
+      }
     </div>
   );
 };

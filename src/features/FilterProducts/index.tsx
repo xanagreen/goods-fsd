@@ -3,6 +3,7 @@ import { setCategoryOption, useGetProductsCategoriesQuery } from './slice';
 import { Button } from "shared/ui/Button";
 import styles from "./styles.module.scss";
 import { fetchAllProducts, fetchProductsByCategory, resetProducts } from 'widgets/ProductList/slice';
+import Loader from 'shared/ui/Loader';
 
 
 const FilterProducts = () => {
@@ -55,17 +56,15 @@ const FilterProducts = () => {
           Category
         </p>
 
-        {
-          isCategoriesError && <p>Категории временно недоступны</p>
-        }
+        {isCategoriesError && <p>Categories are unavailable...</p>}
+
+        {isCategoriesLoading  &&  <Loader />}
 
         {
-          isCategoriesLoading 
-          ? <p>Загрузка категорий...</p>
-          : (
+          !isCategoriesError && !isCategoriesLoading && categories && (
             <div className={styles['filter__list']}>
-              {categoriesList}
-            </div>
+            {categoriesList}
+          </div>
           )
         }
 

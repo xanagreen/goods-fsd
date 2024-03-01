@@ -3,7 +3,7 @@
 
   margin-bottom: 54px;
 
-  background-color: #484283;
+  background-color: var(--c-bg);
 
   &__content {
     position: relative;
@@ -70,7 +70,7 @@
 
   margin-bottom: 60px;
 
-  background-color: #484283;
+  background-color: var(--c-bg);
 
   &::before {
     position: absolute;
@@ -148,7 +148,7 @@
   margin-bottom: 60px;
   padding: 60px 0 240px;
 
-  background-color: #484283;
+  background-color: var(--c-bg);
 
   &::before {
     position: absolute;

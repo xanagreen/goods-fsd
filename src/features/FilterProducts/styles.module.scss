@@ -33,7 +33,7 @@
 
     margin-bottom: 32px;
 
-    border: 1px solid #dbbba9;
+    border: 1px solid var(--c-light);
     border-radius: 2px;
   }
 
@@ -41,11 +41,11 @@
     position: relative;
 
     &:nth-child(2n - 1) {
-      border-right: 1px solid #dbbba9;
+      border-right: 1px solid var(--c-light);
     }
 
     &:nth-child(n + 3) {
-      border-top: 1px solid #dbbba9;
+      border-top: 1px solid var(--c-light);
     }
 
     &-label {
@@ -74,6 +74,6 @@
   }
 
   &__input:checked + &__checkbox-label {
-    background-color: #dbbba9;
+    background-color: var(--c-light);
   }
 }

@@ -36,7 +36,7 @@
 
     content: "";
 
-    border: 1px solid #dbbba9;
+    border: 1px solid var(--c-light);
     border-radius: 4px;
   }
 }
@@ -48,6 +48,6 @@
 
 .input:checked + .label {
   &::before {
-    background-color: #dbbba9;
+    background-color: var(--c-light);
   }
 }

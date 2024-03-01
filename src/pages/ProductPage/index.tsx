@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import { useParams } from "react-router-dom";
 import { useGetProductQuery } from "./api";
 import ProductDetails from "widgets/ProductDetails";
+import Loader from "shared/ui/Loader";
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -25,9 +26,9 @@ const ProductPage = () => {
           Product {productId}
         </h1>
 
-        {isProductError && <p>Не удалось загрузить продукт...</p>}
+        {isProductError && <p>Unable to load the product...</p>}
 
-        {isProductLoading && <p>Loading...</p>}
+        {isProductLoading && <Loader />}
 
         {!isProductLoading && !isProductError && product && <ProductDetails product={product}/>}
       </div>

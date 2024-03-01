@@ -6,3 +6,9 @@
     height: 70px;
   }
 }
+
+li.slick-active {
+  div {
+    box-shadow: 0 0 0 2px var(--c-accent);
+  }
+}
